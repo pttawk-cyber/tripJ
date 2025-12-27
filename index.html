@@ -1,56 +1,98 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>台中親子文質三日遊</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>台中唯二設計文旅・親子自駕 3日遊</title>
 <style>
+* { box-sizing: border-box; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0;
-  background: #f4f6f8;
+  font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fff0f6;
+  color: #444;
 }
 header {
-  background: #4caf50;
-  color: white;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  padding: 20px 16px 28px;
+  text-align: center;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+}
+header h1 { margin: 0; font-size: 1.6em; }
+header .meta { margin-top: 8px; font-size: .95em; }
+
+.container {
+  max-width: 680px;
+  margin: auto;
   padding: 16px;
 }
-.container {
-  padding: 12px;
+.day-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
 }
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.day-card h2 {
+  margin: 0 0 6px;
+  color: #ff6f91;
+}
+.day-card .theme {
+  font-size: .9em;
+  color: #888;
+  margin-bottom: 10px;
 }
 .stop {
-  border-left: 4px solid #4caf50;
-  padding-left: 8px;
-  margin: 10px 0;
+  background: #fef6ff;
+  border-radius: 18px;
+  padding: 12px;
+  margin-bottom: 12px;
 }
-.time {
-  color: #666;
-  font-size: 0.9em;
+.stop-title {
+  font-weight: 700;
+  font-size: 1.05em;
 }
-a {
-  color: #2196f3;
+.time { font-size: .9em; color: #777; margin: 4px 0; }
+.desc { font-size: .9em; margin: 4px 0; }
+.badges span {
+  display: inline-block;
+  background: #ffe3ec;
+  color: #d6336c;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: .8em;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+.links a {
+  display: inline-block;
+  margin-top: 6px;
+  margin-right: 10px;
+  font-size: .85em;
   text-decoration: none;
+  color: #339af0;
+}
+.links a.route { color: #f08c00; }
+.notes {
+  margin-top: 6px;
+  font-size: .8em;
+  color: #555;
 }
 .footer {
   text-align: center;
-  color: #666;
-  font-size: 0.85em;
-  margin: 16px 0;
+  padding: 16px 8px 28px;
+  font-size: .95em;
+  color: #555;
 }
+.footer strong { color: #d6336c; }
 </style>
 </head>
 <body>
 
 <header>
-  <h2 id="title"></h2>
-  <div id="meta"></div>
+  <h1 id="title"></h1>
+  <div class="meta" id="meta"></div>
 </header>
 
 <div class="container" id="content"></div>
@@ -58,79 +100,94 @@ a {
 <div class="footer" id="total"></div>
 
 <script>
-const data = {
-  "tripMeta": {
-    "title": "台中親子文質三日遊",
-    "startDate": "2026-02-18",
-    "endDate": "2026-02-20",
-    "travelers": 3,
-    "budgetLimit": 30000,
-    "transport": "Self-Drive"
+const data = /* 你的 JSON 資料 */ {
+  "meta": {
+    "title": "台中唯二設計文旅・親子自駕 3日遊",
+    "dates": "2026-02-18 to 2026-02-20",
+    "guests": "2大1小 (9歲)",
+    "budgetTotal": 28500,
+    "currency": "TWD"
   },
   "days": [
     {
       "day": 1,
+      "date": "2026/02/18 (週三)",
+      "title": "出發與科學探索",
+      "theme": "科學 x 舊城美食",
       "stops": [
-        {
-          "name": "木匠兄妹木工房",
-          "startTime": "11:30",
-          "endTime": "14:00",
-          "lat": 24.2863,
-          "lng": 120.7188,
-          "costEstimate": 1500,
-          "placeLink": "https://maps.app.goo.gl/352x375oY2J9KjB9A",
-          "notes": "手作DIY建議先預約"
-        },
-        {
-          "name": "后豐鐵馬道",
-          "startTime": "14:15",
-          "endTime": "16:30",
-          "routeLinkToNext": "https://www.google.com/maps/dir/%E5%90%8E%E8%B1%90%E9%90%B5%E9%A6%AC%E9%81%93/%E5%94%AF%E4%BA%8C%E8%A8%AD%E8%A8%88%E6%96%87%E6%97%85"
-        }
+        {"time":"09:30 - 11:30","name":"出發：板橋正隆廣場","desc":"自駕前往台中，避開上班尖峰。","cost":200,"routeLink":"https://www.google.com/maps/dir/?api=1&origin=板橋正隆廣場&destination=春水堂創始店"},
+        {"time":"11:30 - 13:00","name":"午餐：春水堂 (創始店)","desc":"珍珠奶茶發源地。","cost":1200,"placeLink":"https://maps.google.com/?q=春水堂四維店"},
+        {"time":"13:30 - 16:30","name":"國立自然科學博物館","desc":"恐龍、太空劇場。","cost":600,"placeLink":"https://maps.google.com/?q=國立自然科學博物館"},
+        {"time":"17:00 - 18:00","name":"Check-in: 唯二設計文旅","desc":"辦理入住休息。","cost":4500,"placeLink":"https://maps.google.com/?q=唯二設計文旅"},
+        {"time":"18:30 - 20:30","name":"晚餐：一中街夜市","desc":"夜市美食。","cost":1000,"placeLink":"https://maps.google.com/?q=一中街夜市"}
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026/02/19 (週四)",
+      "title": "文創與濕地夕陽",
+      "theme": "自然 x 文青散策",
+      "stops": [
+        {"time":"09:30 - 10:30","name":"早餐","desc":"飯店或在地早餐。","cost":300},
+        {"time":"10:30 - 12:30","name":"審計新村","desc":"文創聚落。","cost":500,"placeLink":"https://maps.google.com/?q=審計新村"},
+        {"time":"12:30 - 14:00","name":"午餐：輕井澤鍋物","desc":"人氣火鍋。","cost":1500,"placeLink":"https://maps.google.com/?q=輕井澤鍋物"},
+        {"time":"14:30 - 16:00","name":"臺中國家歌劇院","desc":"曲牆建築。","cost":200,"placeLink":"https://maps.google.com/?q=臺中國家歌劇院"},
+        {"time":"16:30 - 18:30","name":"高美濕地","desc":"夕陽木棧道。","cost":200,"placeLink":"https://maps.google.com/?q=高美濕地"},
+        {"time":"19:30 - 21:00","name":"晚餐：逢甲夜市","desc":"回程順路。","cost":1000,"placeLink":"https://maps.google.com/?q=逢甲夜市"}
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026/02/20 (週五)",
+      "title": "伴手禮與返程",
+      "theme": "歷史 x 動漫巷",
+      "stops": [
+        {"time":"09:30 - 10:30","name":"宮原眼科","desc":"買伴手禮。","cost":1000,"placeLink":"https://maps.google.com/?q=宮原眼科"},
+        {"time":"10:45 - 12:00","name":"動漫彩繪巷","desc":"動漫彩繪拍照。","cost":0,"placeLink":"https://maps.google.com/?q=動漫彩繪巷"},
+        {"time":"12:30 - 14:00","name":"午餐：台中第二市場","desc":"在地小吃。","cost":600,"placeLink":"https://maps.google.com/?q=台中第二市場"},
+        {"time":"14:30 - 16:30","name":"返程：回板橋","desc":"快樂賦歸。","cost":200,"routeLink":"https://www.google.com/maps/dir/?api=1&origin=台中第二市場&destination=板橋正隆廣場"}
       ]
     }
-  ],
-  "totals": {
-    "estimatedCost": 28500,
-    "currency": "TWD"
-  }
+  ]
 };
 
-// Header
-document.getElementById("title").textContent = data.tripMeta.title;
+document.getElementById("title").textContent = data.meta.title;
 document.getElementById("meta").textContent =
-  `${data.tripMeta.startDate} ～ ${data.tripMeta.endDate} ｜ ${data.tripMeta.travelers} 人 ｜ ${data.tripMeta.transport}`;
+  `📅 ${data.meta.dates} ｜ 👨‍👩‍👧 ${data.meta.guests}`;
 
-// Content
 const content = document.getElementById("content");
 
 data.days.forEach(day => {
-  const card = document.createElement("div");
-  card.className = "card";
-  const h3 = document.createElement("h3");
-  h3.textContent = `Day ${day.day}`;
-  card.appendChild(h3);
+  const dayCard = document.createElement("div");
+  dayCard.className = "day-card";
+  dayCard.innerHTML = `
+    <h2>🐰 Day ${day.day}｜${day.date}</h2>
+    <div class="theme">🎈 ${day.title}（${day.theme}）</div>
+  `;
 
   day.stops.forEach(stop => {
     const div = document.createElement("div");
     div.className = "stop";
     div.innerHTML = `
-      <strong>${stop.name}</strong><br>
-      <span class="time">${stop.startTime} - ${stop.endTime}</span><br>
-      ${stop.placeLink ? `<a href="${stop.placeLink}" target="_blank">📍 查看地圖</a><br>` : ""}
-      ${stop.routeLinkToNext ? `<a href="${stop.routeLinkToNext}" target="_blank">➡️ 前往下一站路線</a><br>` : ""}
-      ${stop.costEstimate ? `💰 預估：$${stop.costEstimate}<br>` : ""}
-      ${stop.notes ? `📝 ${stop.notes}` : ""}
+      <div class="stop-title">📍 ${stop.name}</div>
+      <div class="time">🕒 ${stop.time}</div>
+      <div class="desc">${stop.desc || ""}</div>
+      <div class="badges">
+        ${stop.cost !== undefined ? `<span>💰 $${stop.cost}</span>` : ""}
+      </div>
+      <div class="links">
+        ${stop.placeLink ? `<a href="${stop.placeLink}" target="_blank">🗺️ 地圖</a>` : ""}
+        ${stop.routeLink ? `<a class="route" href="${stop.routeLink}" target="_blank">➡️ 路線</a>` : ""}
+      </div>
     `;
-    card.appendChild(div);
+    dayCard.appendChild(div);
   });
 
-  content.appendChild(card);
+  content.appendChild(dayCard);
 });
 
-// Footer
-document.getElementById("total").textContent =
-  `總預估費用：$${data.totals.estimatedCost} ${data.totals.currency} ｜ 預算上限：$${data.tripMeta.budgetLimit}`;
+document.getElementById("total").innerHTML =
+  `💖 總預算：<strong>$${data.meta.budgetTotal} ${data.meta.currency}</strong>`;
 </script>
 
 </body>
