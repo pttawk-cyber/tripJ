@@ -1,194 +1,241 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>台中唯二設計文旅・親子自駕 3日遊</title>
-<style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #fff0f6;
-  color: #444;
-}
-header {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  padding: 20px 16px 28px;
-  text-align: center;
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
-}
-header h1 { margin: 0; font-size: 1.6em; }
-header .meta { margin-top: 8px; font-size: .95em; }
-
-.container {
-  max-width: 680px;
-  margin: auto;
-  padding: 16px;
-}
-.day-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 16px;
-  margin-bottom: 18px;
-  box-shadow: 0 10px 20px rgba(0,0,0,.08);
-}
-.day-card h2 {
-  margin: 0 0 6px;
-  color: #ff6f91;
-}
-.day-card .theme {
-  font-size: .9em;
-  color: #888;
-  margin-bottom: 10px;
-}
-.stop {
-  background: #fef6ff;
-  border-radius: 18px;
-  padding: 12px;
-  margin-bottom: 12px;
-}
-.stop-title {
-  font-weight: 700;
-  font-size: 1.05em;
-}
-.time { font-size: .9em; color: #777; margin: 4px 0; }
-.desc { font-size: .9em; margin: 4px 0; }
-.badges span {
-  display: inline-block;
-  background: #ffe3ec;
-  color: #d6336c;
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: .8em;
-  margin-right: 6px;
-  margin-top: 6px;
-}
-.links a {
-  display: inline-block;
-  margin-top: 6px;
-  margin-right: 10px;
-  font-size: .85em;
-  text-decoration: none;
-  color: #339af0;
-}
-.links a.route { color: #f08c00; }
-.notes {
-  margin-top: 6px;
-  font-size: .8em;
-  color: #555;
-}
-.footer {
-  text-align: center;
-  padding: 16px 8px 28px;
-  font-size: .95em;
-  color: #555;
-}
-.footer strong { color: #d6336c; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台中苗栗親子三日遊 - 完整行程表</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 30px 15px;
+            background: linear-gradient(135deg, var(--primary-color), #4a69bd);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .meta-item {
+            background: var(--card-bg);
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        .day-section { margin-bottom: 40px; }
+        .day-header {
+            font-size: 1.6rem;
+            color: white;
+            background: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        .stop-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border-left: 5px solid #ddd;
+        }
+        .time-tag {
+            background: #ecf0f1;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .stop-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        .btn-map {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background-color: var(--success-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffeeba;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .info-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        th { background-color: #f8f9fa; }
+        .footer-tips {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px dashed var(--accent-color);
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1 id="title"></h1>
-  <div class="meta" id="meta"></div>
-</header>
+<div class="container">
+    <header>
+        <h1>台中苗栗親子三日遊</h1>
+        <p>2026/02/18 - 2026/02/20</p>
+    </header>
 
-<div class="container" id="content"></div>
+    <div class="meta-grid">
+        <div class="meta-item"><strong>人數</strong><br>4 人 (2大2小)</div>
+        <div class="meta-item"><strong>交通</strong><br>自駕開車</div>
+        <div class="meta-item"><strong>預算</strong><br>約 NT$ 30,000</div>
+        <div class="meta-item"><strong>住宿</strong><br>台中唯二設計文旅</div>
+    </div>
 
-<div class="footer" id="total"></div>
+    <div class="day-section">
+        <div class="day-header">Day 1: 2026-02-18 (三)</div>
+        <div class="stop-card">
+            <span class="time-tag">08:30 - 12:00</span>
+            <div class="stop-name">苗栗火炎山 (登山口-三角點)</div>
+            <p>惡地景觀攀登。注意：大峽谷處風大，請遠離崖邊。</p>
+            <a href="https://maps.app.goo.gl/W6y4FfVpYV6j9S9y9" target="_blank" class="btn-map">📍 導航至登山口停車場</a>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">13:40 - 15:30</span>
+            <div class="stop-name">火炎山生態教育館</div>
+            <p>室內石虎生態導覽。門票：免費。</p>
+            <a href="https://maps.app.goo.gl/kX7e5C6X7X7X7X7X7" target="_blank" class="btn-map">📍 開啟地圖</a>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">17:30 - 19:30</span>
+            <div class="stop-name">繼光商店街 (飯店 Check-in)</div>
+            <p>晚餐推薦：繼光香香雞、東協廣場美食。</p>
+        </div>
+    </div>
 
-<script>
-const data = /* 你的 JSON 資料 */ {
-  "meta": {
-    "title": "台中唯二設計文旅・親子自駕 3日遊",
-    "dates": "2026-02-18 to 2026-02-20",
-    "guests": "2大1小 (9歲)",
-    "budgetTotal": 28500,
-    "currency": "TWD"
-  },
-  "days": [
-    {
-      "day": 1,
-      "date": "2026/02/18 (週三)",
-      "title": "出發與科學探索",
-      "theme": "科學 x 舊城美食",
-      "stops": [
-        {"time":"09:30 - 11:30","name":"出發：板橋正隆廣場","desc":"自駕前往台中，避開上班尖峰。","cost":200,"routeLink":"https://www.google.com/maps/dir/?api=1&origin=板橋正隆廣場&destination=春水堂創始店"},
-        {"time":"11:30 - 13:00","name":"午餐：春水堂 (創始店)","desc":"珍珠奶茶發源地。","cost":1200,"placeLink":"https://maps.google.com/?q=春水堂四維店"},
-        {"time":"13:30 - 16:30","name":"國立自然科學博物館","desc":"恐龍、太空劇場。","cost":600,"placeLink":"https://maps.google.com/?q=國立自然科學博物館"},
-        {"time":"17:00 - 18:00","name":"Check-in: 唯二設計文旅","desc":"辦理入住休息。","cost":4500,"placeLink":"https://maps.google.com/?q=唯二設計文旅"},
-        {"time":"18:30 - 20:30","name":"晚餐：一中街夜市","desc":"夜市美食。","cost":1000,"placeLink":"https://maps.google.com/?q=一中街夜市"}
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2026/02/19 (週四)",
-      "title": "文創與濕地夕陽",
-      "theme": "自然 x 文青散策",
-      "stops": [
-        {"time":"09:30 - 10:30","name":"早餐","desc":"飯店或在地早餐。","cost":300},
-        {"time":"10:30 - 12:30","name":"審計新村","desc":"文創聚落。","cost":500,"placeLink":"https://maps.google.com/?q=審計新村"},
-        {"time":"12:30 - 14:00","name":"午餐：輕井澤鍋物","desc":"人氣火鍋。","cost":1500,"placeLink":"https://maps.google.com/?q=輕井澤鍋物"},
-        {"time":"14:30 - 16:00","name":"臺中國家歌劇院","desc":"曲牆建築。","cost":200,"placeLink":"https://maps.google.com/?q=臺中國家歌劇院"},
-        {"time":"16:30 - 18:30","name":"高美濕地","desc":"夕陽木棧道。","cost":200,"placeLink":"https://maps.google.com/?q=高美濕地"},
-        {"time":"19:30 - 21:00","name":"晚餐：逢甲夜市","desc":"回程順路。","cost":1000,"placeLink":"https://maps.google.com/?q=逢甲夜市"}
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2026/02/20 (週五)",
-      "title": "伴手禮與返程",
-      "theme": "歷史 x 動漫巷",
-      "stops": [
-        {"time":"09:30 - 10:30","name":"宮原眼科","desc":"買伴手禮。","cost":1000,"placeLink":"https://maps.google.com/?q=宮原眼科"},
-        {"time":"10:45 - 12:00","name":"動漫彩繪巷","desc":"動漫彩繪拍照。","cost":0,"placeLink":"https://maps.google.com/?q=動漫彩繪巷"},
-        {"time":"12:30 - 14:00","name":"午餐：台中第二市場","desc":"在地小吃。","cost":600,"placeLink":"https://maps.google.com/?q=台中第二市場"},
-        {"time":"14:30 - 16:30","name":"返程：回板橋","desc":"快樂賦歸。","cost":200,"routeLink":"https://www.google.com/maps/dir/?api=1&origin=台中第二市場&destination=板橋正隆廣場"}
-      ]
-    }
-  ]
-};
+    <div class="day-section">
+        <div class="day-header">Day 2: 2026-02-19 (四)</div>
+        <div class="stop-card">
+            <span class="time-tag">09:30 - 11:30</span>
+            <div class="stop-name">國立自然科學博物館</div>
+            <p>必看恐龍廳。門票：成人 $100 / 學生 $70。</p>
+            <a href="https://maps.app.goo.gl/8X7e5C6X7X7X7X7" target="_blank" class="btn-map">📍 開啟地圖</a>
+        </div>
+        <div class="stop-card" style="border-left-color: var(--warning-color);">
+            <span class="time-tag">11:00 - 12:00</span>
+            <div class="stop-name">Air Gene 空氣基因 (彈跳床)</div>
+            <p><strong>注意：</strong>10:40 需報到。自備防滑襪。</p>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">15:00 - 19:00</span>
+            <div class="stop-name">逢甲夜市 & 台中中央公園</div>
+            <p>傍晚散步後逛夜市，體驗 12 感官設施。</p>
+        </div>
+    </div>
 
-document.getElementById("title").textContent = data.meta.title;
-document.getElementById("meta").textContent =
-  `📅 ${data.meta.dates} ｜ 👨‍👩‍👧 ${data.meta.guests}`;
+    <div class="day-section">
+        <div class="day-header">Day 3: 2026-02-20 (五)</div>
+        <div class="stop-card">
+            <span class="time-tag">09:30 - 11:30</span>
+            <div class="stop-name">蓬萊溪自然生態園區 (護魚步道)</div>
+            <p>平緩好走的森林步道，適合全家觀賞溪水與魚群。</p>
+            <a href="https://maps.app.goo.gl/fish-watching-trail" target="_blank" class="btn-map">📍 開啟地圖</a>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">12:00 - 14:00</span>
+            <div class="stop-name">南庄老街</div>
+            <p>午餐推薦：桂花巷合菜、手工麵。買伴手禮好地方。</p>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">14:30 - 15:30</span>
+            <div class="stop-name">天仁茶文化館</div>
+            <p>回程休息站。品茶、吃茶葉蛋、上廁所。</p>
+        </div>
+    </div>
 
-const content = document.getElementById("content");
+    <div class="alert-box">
+        <h3>📌 訂位與票券提醒</h3>
+        <ul>
+            <li><strong>空氣基因彈跳床：</strong> 務必提前一週網路預約，並確認成人與小孩的場次。</li>
+            <li><strong>科博館：</strong> 若想看「太空劇場」，建議當天 09:00 於官網搶購電子票。</li>
+            <li><strong>住宿：</strong> 確認「唯二文旅」是否有提供特約停車位。</li>
+        </ul>
+    </div>
 
-data.days.forEach(day => {
-  const dayCard = document.createElement("div");
-  dayCard.className = "day-card";
-  dayCard.innerHTML = `
-    <h2>🐰 Day ${day.day}｜${day.date}</h2>
-    <div class="theme">🎈 ${day.title}（${day.theme}）</div>
-  `;
+    <div class="info-panel">
+        <h3>⚠️ 風險控管資訊</h3>
+        <table>
+            <tr><th>情境</th><th>影響</th><th>備案</th></tr>
+            <tr><td>天候不佳 (火炎山)</td><td>路面濕滑危險</td><td>改往后豐鐵馬道或三義木雕博物館。</td></tr>
+            <tr><td>國道 1 號塞車</td><td>延誤 30-60 分鐘</td><td>改走國道 3 號，或於泰安服務區休息。</td></tr>
+            <tr><td>空氣基因額滿</td><td>小孩體力無處放</td><td>改往中央公園遊樂場或 LaLaport 遊戲區。</td></tr>
+        </table>
+    </div>
 
-  day.stops.forEach(stop => {
-    const div = document.createElement("div");
-    div.className = "stop";
-    div.innerHTML = `
-      <div class="stop-title">📍 ${stop.name}</div>
-      <div class="time">🕒 ${stop.time}</div>
-      <div class="desc">${stop.desc || ""}</div>
-      <div class="badges">
-        ${stop.cost !== undefined ? `<span>💰 $${stop.cost}</span>` : ""}
-      </div>
-      <div class="links">
-        ${stop.placeLink ? `<a href="${stop.placeLink}" target="_blank">🗺️ 地圖</a>` : ""}
-        ${stop.routeLink ? `<a class="route" href="${stop.routeLink}" target="_blank">➡️ 路線</a>` : ""}
-      </div>
-    `;
-    dayCard.appendChild(div);
-  });
+    <div class="footer-tips">
+        <h3>💡 出發前最後 3 個溫馨提醒</h3>
+        <ol>
+            <li><strong>洋蔥式穿搭：</strong> 2 月份早晚溫差大，登山後流汗易受風寒，請備妥外套。</li>
+            <li><strong>專業防滑襪：</strong> 彈跳床場館通常要求特定止滑襪，若家裡有舊的記得帶，現場買約 $100/雙。</li>
+            <li><strong>離線地圖：</strong> 苗栗山區部分路段訊號較弱，建議先在 Google Maps 下載南庄地區的離線地圖。</li>
+        </ol>
+    </div>
 
-  content.appendChild(dayCard);
-});
-
-document.getElementById("total").innerHTML =
-  `💖 總預算：<strong>$${data.meta.budgetTotal} ${data.meta.currency}</strong>`;
-</script>
+    <footer style="text-align: center; color: #95a5a6; margin: 40px 0; font-size: 0.8rem;">
+        &copy; 2026 專業旅遊行程設計師 - 祝您旅途愉快
+    </footer>
+</div>
 
 </body>
 </html>
