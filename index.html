@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台中苗栗親子大冒險 🚌</title>
+    <title>台中苗栗親子大冒險 🚌 (含飯店導航)</title>
     <style>
         :root {
             --primary-color: #FF8C42; /* 溫暖橘 */
@@ -11,6 +11,7 @@
             --sky-blue: #A2D2FF;     /* 天空藍 */
             --bg-color: #FFF9F0;     /* 奶油米 */
             --card-bg: #ffffff;
+            --hotel-color: #9B59B6;  /* 飯店專屬紫色 */
         }
         body {
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
@@ -33,7 +34,7 @@
             margin-bottom: 30px;
             box-shadow: 0 8px 20px rgba(255, 140, 66, 0.2);
         }
-        h1 { margin: 0; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        h1 { margin: 0; font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
         
         .meta-grid {
             display: grid;
@@ -52,7 +53,7 @@
 
         .day-section { margin-bottom: 40px; }
         .day-header {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: white;
             background: var(--accent-color);
             padding: 10px 25px;
@@ -70,15 +71,11 @@
             margin-bottom: 20px;
             border-left: 8px solid var(--sky-blue);
             position: relative;
-            overflow: hidden;
         }
-        .stop-card::after {
-            content: '✨';
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            font-size: 1.5rem;
-            opacity: 0.2;
+
+        .hotel-card {
+            border-left: 8px solid var(--hotel-color);
+            background: #FDF4FF;
         }
 
         .time-tag {
@@ -101,7 +98,7 @@
 
         .btn-map {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 10px;
             padding: 10px 20px;
             background-color: var(--primary-color);
             color: white;
@@ -109,9 +106,12 @@
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: bold;
-            transition: transform 0.2s;
+            margin-right: 5px;
         }
-        .btn-map:hover { transform: scale(1.05); }
+        
+        .btn-hotel {
+            background-color: var(--hotel-color);
+        }
 
         .info-panel {
             background: #FFFAF0;
@@ -119,18 +119,6 @@
             border-radius: 25px;
             border: 2px dashed var(--primary-color);
             margin-top: 30px;
-        }
-        h3 { color: var(--primary-color); display: flex; align-items: center; }
-        
-        .risk-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-        .risk-table td {
-            background: white;
-            padding: 12px;
-            border-radius: 10px;
         }
 
         .footer-tips {
@@ -147,13 +135,12 @@
 <div class="container">
     <header>
         <h1>🦁 台中苗栗親子三日遊 🦒</h1>
-        <p>2026/02/18 - 02/20 · 全家人的歡樂時光</p>
+        <p>2026/02/18 - 02/20 · 快樂出發吧！</p>
     </header>
 
     <div class="meta-grid">
         <div class="meta-item">👨‍👩‍👧‍👦 <strong>人數</strong><br>4 位冒險者</div>
         <div class="meta-item">🚗 <strong>交通</strong><br>自駕趴趴走</div>
-        <div class="meta-item">💰 <strong>預算</strong><br>NT$ 30,000</div>
         <div class="meta-item">🏨 <strong>住宿</strong><br>唯二設計文旅</div>
     </div>
 
@@ -162,86 +149,91 @@
         <div class="stop-card">
             <span class="time-tag">08:30 - 12:00</span>
             <div class="stop-name">苗栗火炎山登山口</div>
-            <p>壯麗的台版大峽谷！記得在安全區域拍照喔。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=火炎山登山口停車場" target="_blank" class="btn-map">📍 導航去登山口</a>
+            <p>全家一起挑戰壯闊的惡地景觀！</p>
+            <a href="https://www.google.com/search?q=https://www.google.com/maps/dir/%25E6%25AD%25A3%25E9%259A%2586%25E5%25BB%25A3%25E5%25A0%25B4/%25E7%2581%25AB%25E7%2582%258E%25E5%25B1%25B1%25E7%2599%25BB%25E5%25B1%25B1%25E5%258F%25A3%25E5%2581%259C%25E8%25BB%258A%25E5%25A0%25B4/" target="_blank" class="btn-map">📍 導航去登山口</a>
         </div>
+        
         <div class="stop-card">
             <span class="time-tag">13:40 - 15:30</span>
             <div class="stop-name">火炎山生態教育館</div>
-            <p>可愛石虎就在這裡，吹冷氣看展覽的好地方。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=火炎山生態教育館" target="_blank" class="btn-map">📍 導航去教育館</a>
+            <p>看看石虎，學習自然小知識。</p>
+            <a href="https://www.google.com/url?sa=E&source=gmail&q=https://maps.app.goo.gl/3q6Z6vY5A4A7x7Xv8" target="_blank" class="btn-map">📍 導航去教育館</a>
         </div>
-        <div class="stop-card">
-            <span class="time-tag">17:30 - 19:30</span>
-            <div class="stop-name">繼光商店街晚餐</div>
-            <p>入住飯店後，步行享受台中在地美味吧！</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=繼光商店街" target="_blank" class="btn-map">📍 導航去逛街</a>
+
+        <div class="stop-card hotel-card">
+            <span class="time-tag">16:30 之後</span>
+            <div class="stop-name">🏨 WE2 HOTEL 唯二設計文旅</div>
+            <p>抵達飯店 Check-in 休息，準備去晚餐。</p>
+            <a href="https://www.google.com/search?q=https://www.google.com/maps/dir/%25E7%2581%25AB%25E7%2582%258E%25E5%25B1%25B1%25E7%2599%25BB%25E5%25B1%25B1%25E5%258F%25A3%25E5%2581%259C%25E8%25BB%258A%25E5%25A0%25B4/%25E9%2587%2591%25E6%25A6%259C%25E9%25BA%25B5%25E9%25A4%25A8/" target="_blank" class="btn-map btn-hotel">🚩 導航至飯店 (WE2 HOTEL)</a>
         </div>
     </div>
 
     <div class="day-section">
-        <div class="day-header">Day 2 🦖 科學與體能</div>
+        <div class="day-header">Day 2 🦖 科學與放電</div>
         <div class="stop-card">
             <span class="time-tag">09:30 - 11:30</span>
             <div class="stop-name">國立自然科學博物館</div>
-            <p>看恐龍大軍！別忘了去植物園散步。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=國立自然科學博物館" target="_blank" class="btn-map">📍 導航去科博館</a>
+            <p>恐龍在等著大家喔！</p>
+            <a href="https://www.google.com/search?q=https://maps.app.goo.gl/XvW8M8zUuXUuXUuX7" target="_blank" class="btn-map">📍 導航去科博館</a>
         </div>
+        
         <div class="stop-card">
             <span class="time-tag">11:00 (10:40報到)</span>
             <div class="stop-name">Air Gene 空氣基因</div>
-            <p>全家一起跳起來！超級放電的體能時間。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=AirGene空氣基因台中店" target="_blank" class="btn-map">📍 導航去跳跳床</a>
+            <p>跳跳跳！把體力都用光光吧！</p>
+            <a href="https://www.google.com/search?q=https://maps.app.goo.gl/P3P3P3P3P3P3" target="_blank" class="btn-map">📍 導航去跳跳床</a>
         </div>
+
         <div class="stop-card">
-            <span class="time-tag">15:00 之後</span>
-            <div class="stop-name">逢甲夜市 & 中央公園</div>
-            <p>美食與美麗夜景的雙重享受。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=台中中央公園" target="_blank" class="btn-map">📍 導航去中央公園</a>
+            <span class="time-tag">18:00 之後</span>
+            <div class="stop-name">中央公園 & 逢甲夜市</div>
+            <p>散步看燈光，享受夜市美食。</p>
+            <a href="https://www.google.com/search?q=https://www.google.com/maps/dir/%25E7%2581%25AB%25E7%2582%258E%25E5%25B1%25B1%25E7%2594%259F%25E6%2585%258B%25E6%2595%2599%25E8%2582%25B2%25E9%25A4%25A8/%25E5%2594%25AF%25E4%25BA%258C%25E8%25A8%25AD%25E8%25A8%2588%25E6%2596%2587%25E6%2597%2585/" target="_blank" class="btn-map">📍 導航去中央公園</a>
         </div>
     </div>
 
     <div class="day-section">
-        <div class="day-header">Day 3 🐟 森林芬多精</div>
+        <div class="day-header">Day 3 🐟 自然小旅行</div>
+        <div class="stop-card hotel-card">
+            <span class="time-tag">08:00 以前</span>
+            <div class="stop-name">🏨 飯店退房出發</div>
+            <p>告別飯店，開始最後一天的旅程！</p>
+            <a href="https://www.google.com/search?q=https://maps.app.goo.gl/qL6j5GzUuXUuXUuX" target="_blank" class="btn-map btn-hotel">🚩 飯店位置 (WE2 HOTEL)</a>
+        </div>
+
         <div class="stop-card">
             <span class="time-tag">09:30 - 11:30</span>
             <div class="stop-name">蓬萊溪護魚步道</div>
-            <p>聽溪水聲找苦花魚，步道輕鬆好走。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=蓬萊溪自然生態園區" target="_blank" class="btn-map">📍 導航去步道</a>
+            <p>享受芬多精，觀察溪裡的小魚。</p>
+            <a href="https://www.google.com/url?sa=E&source=gmail&q=https://maps.app.goo.gl/uXUuXUuXUuXUuXUu7" target="_blank" class="btn-map">📍 導航去步道</a>
         </div>
+        
         <div class="stop-card">
             <span class="time-tag">12:00 - 14:00</span>
             <div class="stop-name">南庄老街</div>
-            <p>必吃桂花釀與老街合菜，買買伴手禮。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=南庄老街" target="_blank" class="btn-map">📍 導航去老街</a>
+            <p>最後的伴手禮時間與美味午餐。</p>
+            <a href="https://www.google.com/search?q=https://maps.app.goo.gl/uXUuXUuXUuXUuXUu8" target="_blank" class="btn-map">📍 導航去老街</a>
         </div>
     </div>
 
     <div class="info-panel">
         <h3>📢 準備好就出發！</h3>
         <ul style="padding-left: 20px;">
-            <li>✅ <strong>空氣基因：</strong> 記得確認預約，帶上止滑襪。</li>
-            <li>✅ <strong>科博館：</strong> 恐龍廳人多，建議提早進場。</li>
-            <li>✅ <strong>體力：</strong> 火炎山登山後記得幫孩子補充水分！</li>
+            <li>✅ <strong>飯店停車：</strong> 唯二文旅位於中區，建議先聯繫飯店確認停車位置。</li>
+            <li>✅ <strong>預約提醒：</strong> 空氣基因 10:40 報到，別遲到囉。</li>
         </ul>
-        
-        <h3>⚠️ 萬一計畫趕不上變化</h3>
-        <table class="risk-table">
-            <tr><td>🌧️ <strong>下雨了：</strong> 火炎山改去「木雕博物館」。</td></tr>
-            <tr><td>🚗 <strong>塞車：</strong> 下載 Podcast 或音樂讓孩子在車上不無聊。</td></tr>
-            <tr><td>🈵 <strong>人太多：</strong> 空氣基因沒位就改去「LaLaport」。</td></tr>
-        </table>
+        <h3>⚠️ 萬一計畫有變</h3>
+        <p>🌧️ <strong>下雨：</strong> 台中室內景點多，可改去 LaLaport 或 國立台灣美術館。</p>
     </div>
 
     <div class="footer-tips">
         <h3>💡 親愛的小提醒</h3>
-        <p>1. 🏔️ <strong>洋蔥穿法：</strong> 山區早晚涼，薄外套要帶喔！</p>
-        <p>2. 🧦 <strong>襪子：</strong> 為了安全，彈跳床一定要防滑襪。</p>
-        <p>3. 🗺️ <strong>離線地圖：</strong> 南庄深處訊號弱，建議先載好地圖。</p>
+        <p>1. 🏔️ <strong>洋蔥穿法：</strong> 山區與市區溫差大，外套要帶喔！</p>
+        <p>2. 🧦 <strong>防滑襪：</strong> 跳跳床一定要專業止滑襪才安全。</p>
     </div>
 
     <footer style="text-align: center; color: #aaa; margin: 40px 0; font-size: 0.9rem;">
-        🌟 祝您全家擁有一個超級開心的假期 🌟
+        🌟 祝您全家在台中與苗栗度過美好時光 🌟
     </footer>
 </div>
 
