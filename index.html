@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台中苗栗親子三日遊 - 完整行程表</title>
+    <title>台中苗栗親子大冒險 🚌</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --bg-color: #f8f9fa;
+            --primary-color: #FF8C42; /* 溫暖橘 */
+            --accent-color: #63B050;  /* 草地綠 */
+            --sky-blue: #A2D2FF;     /* 天空藍 */
+            --bg-color: #FFF9F0;     /* 奶油米 */
             --card-bg: #ffffff;
         }
         body {
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
             background-color: var(--bg-color);
-            color: var(--primary-color);
+            color: #444;
             line-height: 1.6;
             margin: 0;
-            padding: 10px;
+            padding: 15px;
         }
         .container {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
         }
         header {
             text-align: center;
-            padding: 30px 15px;
-            background: linear-gradient(135deg, var(--primary-color), #4a69bd);
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #FFCF81, #FF8C42);
             color: white;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(255, 140, 66, 0.2);
         }
+        h1 { margin: 0; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        
         .meta-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -45,86 +45,100 @@
             background: var(--card-bg);
             padding: 15px;
             text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--accent-color);
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 2px solid var(--sky-blue);
         }
+
         .day-section { margin-bottom: 40px; }
         .day-header {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: white;
             background: var(--accent-color);
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 10px 25px;
+            border-radius: 50px;
             display: inline-block;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+            font-weight: bold;
         }
+
         .stop-card {
             background: var(--card-bg);
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             margin-bottom: 20px;
-            border-left: 5px solid #ddd;
+            border-left: 8px solid var(--sky-blue);
+            position: relative;
+            overflow: hidden;
         }
+        .stop-card::after {
+            content: '✨';
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
         .time-tag {
-            background: #ecf0f1;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 5px;
+            background: var(--sky-blue);
+            color: #2d5a88;
+            padding: 5px 15px;
+            border-radius: 15px;
             font-weight: bold;
             font-size: 0.9rem;
-            margin-bottom: 10px;
             display: inline-block;
+            margin-bottom: 10px;
         }
+
         .stop-name {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin: 5px 0;
-            color: #2c3e50;
+            color: #333;
+            margin-bottom: 8px;
         }
+
         .btn-map {
             display: inline-block;
-            margin-top: 12px;
-            padding: 8px 16px;
-            background-color: var(--success-color);
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 50px;
             font-size: 0.9rem;
+            font-weight: bold;
+            transition: transform 0.2s;
         }
-        .alert-box {
-            background: #fff3cd;
-            border-left: 5px solid #ffeeba;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
+        .btn-map:hover { transform: scale(1.05); }
+
         .info-panel {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
+            background: #FFFAF0;
+            padding: 25px;
+            border-radius: 25px;
+            border: 2px dashed var(--primary-color);
             margin-top: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        table {
+        h3 { color: var(--primary-color); display: flex; align-items: center; }
+        
+        .risk-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+            border-collapse: separate;
+            border-spacing: 0 10px;
         }
-        th, td {
-            text-align: left;
+        .risk-table td {
+            background: white;
             padding: 12px;
-            border-bottom: 1px solid #eee;
+            border-radius: 10px;
         }
-        th { background-color: #f8f9fa; }
+
         .footer-tips {
-            background: #e8f4fd;
+            background: #E7F6E7;
             padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border: 1px dashed var(--accent-color);
+            border-radius: 25px;
+            margin-top: 25px;
+            border-left: 8px solid var(--accent-color);
         }
     </style>
 </head>
@@ -132,108 +146,102 @@
 
 <div class="container">
     <header>
-        <h1>台中苗栗親子三日遊</h1>
-        <p>2026/02/18 - 2026/02/20</p>
+        <h1>🦁 台中苗栗親子三日遊 🦒</h1>
+        <p>2026/02/18 - 02/20 · 全家人的歡樂時光</p>
     </header>
 
     <div class="meta-grid">
-        <div class="meta-item"><strong>人數</strong><br>4 人 (2大2小)</div>
-        <div class="meta-item"><strong>交通</strong><br>自駕開車</div>
-        <div class="meta-item"><strong>預算</strong><br>約 NT$ 30,000</div>
-        <div class="meta-item"><strong>住宿</strong><br>台中唯二設計文旅</div>
+        <div class="meta-item">👨‍👩‍👧‍👦 <strong>人數</strong><br>4 位冒險者</div>
+        <div class="meta-item">🚗 <strong>交通</strong><br>自駕趴趴走</div>
+        <div class="meta-item">💰 <strong>預算</strong><br>NT$ 30,000</div>
+        <div class="meta-item">🏨 <strong>住宿</strong><br>唯二設計文旅</div>
     </div>
 
     <div class="day-section">
-        <div class="day-header">Day 1: 2026-02-18 (三)</div>
+        <div class="day-header">Day 1 🧗‍♂️ 挑戰火炎山</div>
         <div class="stop-card">
             <span class="time-tag">08:30 - 12:00</span>
-            <div class="stop-name">苗栗火炎山 (登山口-三角點)</div>
-            <p>惡地景觀攀登。注意：大峽谷處風大，請遠離崖邊。</p>
-            <a href="https://maps.app.goo.gl/W6y4FfVpYV6j9S9y9" target="_blank" class="btn-map">📍 導航至登山口停車場</a>
+            <div class="stop-name">苗栗火炎山登山口</div>
+            <p>壯麗的台版大峽谷！記得在安全區域拍照喔。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=火炎山登山口停車場" target="_blank" class="btn-map">📍 導航去登山口</a>
         </div>
         <div class="stop-card">
             <span class="time-tag">13:40 - 15:30</span>
             <div class="stop-name">火炎山生態教育館</div>
-            <p>室內石虎生態導覽。門票：免費。</p>
-            <a href="https://maps.app.goo.gl/kX7e5C6X7X7X7X7X7" target="_blank" class="btn-map">📍 開啟地圖</a>
+            <p>可愛石虎就在這裡，吹冷氣看展覽的好地方。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=火炎山生態教育館" target="_blank" class="btn-map">📍 導航去教育館</a>
         </div>
         <div class="stop-card">
             <span class="time-tag">17:30 - 19:30</span>
-            <div class="stop-name">繼光商店街 (飯店 Check-in)</div>
-            <p>晚餐推薦：繼光香香雞、東協廣場美食。</p>
+            <div class="stop-name">繼光商店街晚餐</div>
+            <p>入住飯店後，步行享受台中在地美味吧！</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=繼光商店街" target="_blank" class="btn-map">📍 導航去逛街</a>
         </div>
     </div>
 
     <div class="day-section">
-        <div class="day-header">Day 2: 2026-02-19 (四)</div>
+        <div class="day-header">Day 2 🦖 科學與體能</div>
         <div class="stop-card">
             <span class="time-tag">09:30 - 11:30</span>
             <div class="stop-name">國立自然科學博物館</div>
-            <p>必看恐龍廳。門票：成人 $100 / 學生 $70。</p>
-            <a href="https://maps.app.goo.gl/8X7e5C6X7X7X7X7" target="_blank" class="btn-map">📍 開啟地圖</a>
-        </div>
-        <div class="stop-card" style="border-left-color: var(--warning-color);">
-            <span class="time-tag">11:00 - 12:00</span>
-            <div class="stop-name">Air Gene 空氣基因 (彈跳床)</div>
-            <p><strong>注意：</strong>10:40 需報到。自備防滑襪。</p>
+            <p>看恐龍大軍！別忘了去植物園散步。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=國立自然科學博物館" target="_blank" class="btn-map">📍 導航去科博館</a>
         </div>
         <div class="stop-card">
-            <span class="time-tag">15:00 - 19:00</span>
-            <div class="stop-name">逢甲夜市 & 台中中央公園</div>
-            <p>傍晚散步後逛夜市，體驗 12 感官設施。</p>
+            <span class="time-tag">11:00 (10:40報到)</span>
+            <div class="stop-name">Air Gene 空氣基因</div>
+            <p>全家一起跳起來！超級放電的體能時間。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=AirGene空氣基因台中店" target="_blank" class="btn-map">📍 導航去跳跳床</a>
+        </div>
+        <div class="stop-card">
+            <span class="time-tag">15:00 之後</span>
+            <div class="stop-name">逢甲夜市 & 中央公園</div>
+            <p>美食與美麗夜景的雙重享受。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=台中中央公園" target="_blank" class="btn-map">📍 導航去中央公園</a>
         </div>
     </div>
 
     <div class="day-section">
-        <div class="day-header">Day 3: 2026-02-20 (五)</div>
+        <div class="day-header">Day 3 🐟 森林芬多精</div>
         <div class="stop-card">
             <span class="time-tag">09:30 - 11:30</span>
-            <div class="stop-name">蓬萊溪自然生態園區 (護魚步道)</div>
-            <p>平緩好走的森林步道，適合全家觀賞溪水與魚群。</p>
-            <a href="https://maps.app.goo.gl/fish-watching-trail" target="_blank" class="btn-map">📍 開啟地圖</a>
+            <div class="stop-name">蓬萊溪護魚步道</div>
+            <p>聽溪水聲找苦花魚，步道輕鬆好走。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=蓬萊溪自然生態園區" target="_blank" class="btn-map">📍 導航去步道</a>
         </div>
         <div class="stop-card">
             <span class="time-tag">12:00 - 14:00</span>
             <div class="stop-name">南庄老街</div>
-            <p>午餐推薦：桂花巷合菜、手工麵。買伴手禮好地方。</p>
+            <p>必吃桂花釀與老街合菜，買買伴手禮。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=南庄老街" target="_blank" class="btn-map">📍 導航去老街</a>
         </div>
-        <div class="stop-card">
-            <span class="time-tag">14:30 - 15:30</span>
-            <div class="stop-name">天仁茶文化館</div>
-            <p>回程休息站。品茶、吃茶葉蛋、上廁所。</p>
-        </div>
-    </div>
-
-    <div class="alert-box">
-        <h3>📌 訂位與票券提醒</h3>
-        <ul>
-            <li><strong>空氣基因彈跳床：</strong> 務必提前一週網路預約，並確認成人與小孩的場次。</li>
-            <li><strong>科博館：</strong> 若想看「太空劇場」，建議當天 09:00 於官網搶購電子票。</li>
-            <li><strong>住宿：</strong> 確認「唯二文旅」是否有提供特約停車位。</li>
-        </ul>
     </div>
 
     <div class="info-panel">
-        <h3>⚠️ 風險控管資訊</h3>
-        <table>
-            <tr><th>情境</th><th>影響</th><th>備案</th></tr>
-            <tr><td>天候不佳 (火炎山)</td><td>路面濕滑危險</td><td>改往后豐鐵馬道或三義木雕博物館。</td></tr>
-            <tr><td>國道 1 號塞車</td><td>延誤 30-60 分鐘</td><td>改走國道 3 號，或於泰安服務區休息。</td></tr>
-            <tr><td>空氣基因額滿</td><td>小孩體力無處放</td><td>改往中央公園遊樂場或 LaLaport 遊戲區。</td></tr>
+        <h3>📢 準備好就出發！</h3>
+        <ul style="padding-left: 20px;">
+            <li>✅ <strong>空氣基因：</strong> 記得確認預約，帶上止滑襪。</li>
+            <li>✅ <strong>科博館：</strong> 恐龍廳人多，建議提早進場。</li>
+            <li>✅ <strong>體力：</strong> 火炎山登山後記得幫孩子補充水分！</li>
+        </ul>
+        
+        <h3>⚠️ 萬一計畫趕不上變化</h3>
+        <table class="risk-table">
+            <tr><td>🌧️ <strong>下雨了：</strong> 火炎山改去「木雕博物館」。</td></tr>
+            <tr><td>🚗 <strong>塞車：</strong> 下載 Podcast 或音樂讓孩子在車上不無聊。</td></tr>
+            <tr><td>🈵 <strong>人太多：</strong> 空氣基因沒位就改去「LaLaport」。</td></tr>
         </table>
     </div>
 
     <div class="footer-tips">
-        <h3>💡 出發前最後 3 個溫馨提醒</h3>
-        <ol>
-            <li><strong>洋蔥式穿搭：</strong> 2 月份早晚溫差大，登山後流汗易受風寒，請備妥外套。</li>
-            <li><strong>專業防滑襪：</strong> 彈跳床場館通常要求特定止滑襪，若家裡有舊的記得帶，現場買約 $100/雙。</li>
-            <li><strong>離線地圖：</strong> 苗栗山區部分路段訊號較弱，建議先在 Google Maps 下載南庄地區的離線地圖。</li>
-        </ol>
+        <h3>💡 親愛的小提醒</h3>
+        <p>1. 🏔️ <strong>洋蔥穿法：</strong> 山區早晚涼，薄外套要帶喔！</p>
+        <p>2. 🧦 <strong>襪子：</strong> 為了安全，彈跳床一定要防滑襪。</p>
+        <p>3. 🗺️ <strong>離線地圖：</strong> 南庄深處訊號弱，建議先載好地圖。</p>
     </div>
 
-    <footer style="text-align: center; color: #95a5a6; margin: 40px 0; font-size: 0.8rem;">
-        &copy; 2026 專業旅遊行程設計師 - 祝您旅途愉快
+    <footer style="text-align: center; color: #aaa; margin: 40px 0; font-size: 0.9rem;">
+        🌟 祝您全家擁有一個超級開心的假期 🌟
     </footer>
 </div>
 
