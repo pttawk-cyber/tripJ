@@ -1,163 +1,308 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚗 親子活力三日遊 - 互動行程表</title>
+    <title>墨爾本冬日人文與自然之律 - 行程表</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
         :root {
-            --primary: #FF8E8E;
-            --secondary: #FFD384;
-            --accent: #9EDE73;
-            --soft-blue: #A2D2FF;
-            --bg: #FFF9F9;
+            --primary-color: #b08d57; /* 歷史金 */
+            --bg-color: #fdfaf4; /* 陽光羊皮紙 */
+            --card-bg: #ffffff;
+            --text-color: #3e3a35;
+            --accent-color: #2c3e50; /* 深歷史藍 */
+            --link-color: #d4a017;
         }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg); color: #444; margin: 0; padding: 15px; }
-        .container { max-width: 600px; margin: auto; }
-        .card { background: white; border-radius: 25px; padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 25px; border: 2px solid #FFE4E4; }
-        h1 { text-align: center; color: var(--primary); font-size: 1.6em; border-bottom: 3px dashed var(--secondary); padding-bottom: 10px; }
-        .day-title { background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; display: inline-block; font-weight: bold; margin-bottom: 15px; }
-        .stop { border-left: 3px solid var(--secondary); margin-left: 10px; padding-left: 20px; position: relative; padding-bottom: 20px; }
-        .stop::before { content: '📍'; position: absolute; left: -14px; top: 0; background: white; font-size: 18px; }
-        .time { color: var(--primary); font-weight: bold; font-size: 0.9em; }
-        .location-name { font-size: 1.1em; font-weight: bold; color: #333; margin: 5px 0; }
-        .desc { font-size: 0.9em; color: #666; margin-bottom: 10px; }
-        .links { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn { text-decoration: none; padding: 6px 15px; border-radius: 12px; font-size: 0.85em; font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
-        .btn-map { background: var(--soft-blue); color: #0056b3; }
-        .btn-nav { background: var(--accent); color: #2d5a27; }
-        .btn:hover { opacity: 0.7; transform: translateY(-2px); }
-        .warning-box { background: #FFF4E0; border-radius: 20px; padding: 15px; border: 2px solid #FFD384; }
-        .warning-box h3 { color: #E67E22; margin-top: 0; font-size: 1.1em; }
-        ul { padding-left: 20px; font-size: 0.9em; }
-        li { margin-bottom: 8px; }
-        .footer { text-align: center; font-size: 0.8em; color: #AAA; margin: 30px 0; }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            font-size: 19px; /* 加大字體 */
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1545044846-351ba102b6d5?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-family: "Times New Roman", serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            padding: 20px;
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-top: 40px;
+            font-family: serif;
+        }
+
+        details {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        summary {
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background-color: #fff;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        details[open] summary::after {
+            content: "▲";
+        }
+
+        .stop {
+            padding: 20px 30px;
+            border-left: 3px solid var(--primary-color);
+            margin: 20px;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+
+        .stop h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .meta {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .route-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .badge {
+            background: #eef2f3;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        .checklist {
+            background: #fff9e6;
+            padding: 20px;
+            border-left: 5px solid #ffcc00;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 17px; }
+            header h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>墨爾本冬日人文與自然之律</h1>
+    <p>2026/06/06 — 2026/06/14 | 尊榮舒享九日遊</p>
+</header>
+
 <div class="container">
-    <header>
-        <h1>🌟 台中苗栗親子大冒險 🌟</h1>
-    </header>
+    
+    <section class="summary-card">
+        <h2>行程摘要</h2>
+        <p><strong>旅人：</strong> 3位 (含2位長者) | <strong>預算：</strong> NT$ 100,000 /人</p>
+        <table>
+            <tr><th>類別</th><th>策略</th><th>估算</th></tr>
+            <tr><td>住宿</td><td>Treasury on Collins (歷史五星)</td><td>$35,000</td></tr>
+            <tr><td>交通</td><td>市區免費路面電車 + 郊區專車精品團</td><td>$15,000</td></tr>
+            <tr><td>餐飲</td><td>每日精選餐酒館與市集美食</td><td>$25,000</td></tr>
+        </table>
+    </section>
 
-    <div class="card">
-        <div class="day-tag"><span class="day-title">Day 1：山系小勇士</span></div>
-        <div class="stop">
-            <div class="time">07:00 - 08:30</div>
-            <div class="location-name">板橋 ➔ 苗栗火炎山</div>
-            <div class="desc">自駕出發，建議在國道服務區稍作休息。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/dir/新北市板橋區正隆廣場/火炎山登山口停車場" class="btn btn-nav" target="_blank">🗺️ 開始導航</a>
-            </div>
-        </div>
-        <div class="stop">
-            <div class="time">08:30 - 12:00</div>
-            <div class="location-name">火炎山大峽谷 ⛰️</div>
-            <div class="desc">壯闊惡地地形。2大2小建議走到大峽谷拍照點後評估體力折返。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=火炎山登山口停車場" class="btn btn-map" target="_blank">📍 地圖定位</a>
-            </div>
-        </div>
-        <div class="stop">
-            <div class="time">14:00 - 16:00</div>
-            <div class="location-name">火炎山生態教育館 🌿</div>
-            <div class="desc">認識石虎與地質，室內冷氣開放好舒服。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=火炎山生態教育館" class="btn btn-map" target="_blank">📍 地圖定位</a>
-            </div>
-        </div>
-        <div class="stop">
-            <div class="time">17:00</div>
-            <div class="location-name">入住：台中唯二設計文旅 🏨</div>
-            <div class="desc">靠近繼光街，晚餐可直接在商店街步行用餐。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=台中唯二設計文旅" class="btn btn-map" target="_blank">📍 飯店定位</a>
-            </div>
-        </div>
-    </div>
+    <h2>每日詳細行程 (可展開)</h2>
 
-    <div class="card">
-        <div class="day-tag"><span class="day-title">Day 2：科學彈跳樂</span></div>
+    <!-- Day 1 & 2 -->
+    <details open>
+        <summary>Day 1-2 (6/6-7): 跨越半球與古蹟入住</summary>
         <div class="stop">
-            <div class="time">09:30 - 10:30</div>
-            <div class="location-name">台中科博館 🦖</div>
-            <div class="desc">看會動的霸王龍！</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=國立自然科學博物館" class="btn btn-map" target="_blank">📍 地點定位</a>
-            </div>
+            <h3>抵達墨爾本機場 (MEL)</h3>
+            <div class="meta">時間: 12:00 預計抵達 | 交通: 華航 CI027</div>
+            <p>抵達後由專車接送至市中心，避開大眾運輸搬運行李的辛勞。</p>
+            <a href="https://maps.app.goo.gl/MEL" class="btn" target="_blank">📍 地圖位置</a>
+            <span class="route-link">🚗 專車接送約 35 分鐘到達飯店</span>
         </div>
         <div class="stop">
-            <div class="time">11:00 - 12:00</div>
-            <div class="location-name">AirGene 空氣基因 🤸</div>
-            <div class="desc"><b>已預約 11:00 場次</b>。全家一起瘋狂彈跳！</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=AirGene空氣基因台中館" class="btn btn-map" target="_blank">📍 地點定位</a>
-            </div>
+            <h3>Treasury on Collins 入住</h3>
+            <div class="meta">座標: -37.816, 144.962 | 亮點: 19世紀歷史建築</div>
+            <p>這間飯店原為銀行總行，充滿大理石與古典氛圍。每日 16:00-18:00 有住客專屬的免費下午茶與酒水 (Happy Hour)，非常適合長輩稍作休息。</p>
+            <a href="https://maps.app.goo.gl/9Rz3T2W1fJpXWf2L9" class="btn" target="_blank">📍 地圖位置</a>
         </div>
-        <div class="stop">
-            <div class="time">17:30 - 19:30</div>
-            <div class="location-name">逢甲夜市美食趣 🍱</div>
-            <div class="desc">推薦：一心臭豆腐、明倫蛋餅、大腸包小腸。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=逢甲夜市" class="btn btn-map" target="_blank">📍 導航至夜市</a>
-            </div>
-        </div>
-        <div class="stop">
-            <div class="time">19:30 - 20:30</div>
-            <div class="location-name">中央公園抹茶湖 🌙</div>
-            <div class="desc">浪漫散步，看台中最美夜間地景。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=台中中央公園" class="btn btn-map" target="_blank">📍 景點定位</a>
-            </div>
-        </div>
-    </div>
+    </details>
 
-    <div class="card">
-        <div class="day-tag"><span class="day-title">Day 3：溪水慢生活</span></div>
+    <!-- Day 3 -->
+    <details>
+        <summary>Day 3 (6/8): 圖書館、拱廊與經典下午茶</summary>
         <div class="stop">
-            <div class="time">09:30 - 11:00</div>
-            <div class="location-name">南庄蓬萊溪步道 🐟</div>
-            <div class="desc">欣賞護魚成果，步道平緩適合孩子。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=蓬萊溪自然生態園區" class="btn btn-map" target="_blank">📍 步道定位</a>
-            </div>
+            <h3>維多利亞州立圖書館</h3>
+            <div class="meta">開放時間: 10:00 - 18:00 | 座標: -37.810, 144.964</div>
+            <p>澳洲最古老的圖書館。站在 La Trobe Reading Room 的圓頂下感受知識的重量。</p>
+            <a href="https://maps.app.goo.gl/7A1S7Xq9p9G1G5G98" class="btn" target="_blank">📍 地圖位置</a>
+            <span class="route-link">🚃 搭乘 Free Tram 約 10 分鐘至皇家拱廊</span>
         </div>
         <div class="stop">
-            <div class="time">12:00 - 14:00</div>
-            <div class="location-name">南庄老街午餐 ⛩️</div>
-            <div class="desc">桂花釀冰鎮湯圓一定要試試！</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=南庄老街" class="btn btn-map" target="_blank">📍 導航定位</a>
-            </div>
+            <h3>Hopetoun Tea Rooms (皇家拱廊內)</h3>
+            <div class="meta">建議: 提前一個月預約</div>
+            <p>墨爾本最著名的英式下午茶，櫥窗內的甜點本身就是藝術品。這對長輩來說是難忘的文化體驗。</p>
+            <a href="https://maps.app.goo.gl/6p6Z9h4hQ9Z9H9fA8" class="btn" target="_blank">📍 地圖位置</a>
         </div>
-        <div class="stop">
-            <div class="time">14:30 - 15:30</div>
-            <div class="location-name">天仁茶文化館 🍦</div>
-            <div class="desc">吃個綠茶霜淇淋，買伴手禮準備回家。</div>
-            <div class="links">
-                <a href="https://www.google.com/maps/search/?api=1&query=天仁茶文化館" class="btn btn-map" target="_blank">📍 導航定位</a>
-                <a href="https://www.google.com/maps/dir/天仁茶文化館/新北市板橋區正隆廣場" class="btn btn-nav" target="_blank">🚗 回溫暖的家</a>
-            </div>
-        </div>
-    </div>
+    </details>
 
-    <div class="warning-box">
-        <h3>💡 親子出遊小提醒</h3>
+    <!-- Day 5 -->
+    <details>
+        <summary>Day 5 (6/10): 普芬比利森林火車</summary>
+        <div class="stop">
+            <h3>Puffing Billy 蒸汽火車</h3>
+            <div class="meta">座標: -37.908, 145.355 | 交通: Metro Train Belgrave Line</div>
+            <p>穿梭在丹德農山脈的古老火車。建議乘坐 Belgrave 到 Lakeside 區段，風景優美且不費體力。</p>
+            <a href="https://maps.app.goo.gl/S4m7d8f9y5S1" class="btn" target="_blank">📍 乘車起點</a>
+            <span class="route-link">🚃 由 Flinders St 車站出發火車 70 分鐘</span>
+        </div>
+    </details>
+
+    <!-- Day 6 -->
+    <details>
+        <summary>Day 6 (6/11): 大洋路壯麗奇景 (專車)</summary>
+        <div class="stop">
+            <h3>十二門徒石 Twelve Apostles</h3>
+            <div class="meta">重點: 防風與禦寒 | 座標: -38.666, 143.104</div>
+            <p>大自然的鬼斧神工。安排 12 人小團專車直達門口，長者僅需步行平緩的木棧道即可觀景。</p>
+            <a href="https://maps.app.goo.gl/m8K3X7G1v9B2" class="btn" target="_blank">📍 觀點連結</a>
+        </div>
+    </details>
+
+    <!-- Risks -->
+    <section class="checklist">
+        <h3>💡 每日一鍵檢查清單</h3>
         <ul>
-            <li><b>【必備服裝】</b>：2/19 去空氣基因請穿著<b>運動服裝</b>，並自備防滑襪（現場亦有販售）。</li>
-            <li><b>【登山安全】</b>：火炎山部分路段為礫石坡，請幫孩子準備止滑效果好的運動鞋，並補足水分。</li>
-            <li><b>【雨天計畫】</b>：若火炎山或護魚步道下雨，可改去「三義木雕博物館」或「頭份尚順育樂世界」。</li>
-            <li><b>【住宿停車】</b>：唯二文旅位於中區鬧區，建議先導航至飯店卸行李，再由人員指引至配合停車場。</li>
-            <li><b>【防蟲準備】</b>：第三天護魚步道屬自然環境，建議噴點防蚊液預防小黑蚊。</li>
+            <li>[ ] 是否帶上厚外套與暖暖包？(墨爾本 6 月早晚極冷)</li>
+            <li>[ ] Myki 交通卡餘額是否充足？</li>
+            <li>[ ] 行動電源與澳洲專用插頭。</li>
+            <li>[ ] 當日景點預約證明 (PDF 或紙本)。</li>
         </ul>
-    </div>
+    </section>
 
-    <div class="footer">
-        Generated by Gemini 3 Flash ✨ 祝您全家旅途愉快！
-    </div>
+    <h2>系統整合資料 (JSON)</h2>
+    <pre>
+{
+  "tripMeta": {
+    "title": "Melbourne Winter Cultural 2026",
+    "accommodation": "Treasury on Collins",
+    "dates": "2026/06/06-14"
+  },
+  "contacts": {
+    "hotel": "+61 3 8535 8535",
+    "emergency": "000"
+  },
+  "stops_data": [
+    {"name": "State Library", "lat": -37.810, "lng": 144.964},
+    {"name": "Twelve Apostles", "lat": -38.666, "lng": 143.104}
+  ]
+}
+    </pre>
+
 </div>
+
+<footer>
+    <p>© 祝您旅途愉快</p>
+    </footer>
 
 </body>
 </html>
